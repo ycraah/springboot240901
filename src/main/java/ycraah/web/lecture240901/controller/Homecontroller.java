@@ -29,6 +29,12 @@ public class Homecontroller {
     people.add(person);
     return "응답 : %d번 사람이 추가되었습니다.".formatted(count);
   }
+
+  @GetMapping("/showPeople")
+  @ResponseBody
+  public List<Person> showPeople() {
+    return people;
+  }
 }
 
 
