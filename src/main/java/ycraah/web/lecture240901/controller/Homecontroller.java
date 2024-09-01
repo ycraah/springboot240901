@@ -35,6 +35,33 @@ public class Homecontroller {
   public List<Person> showPeople() {
     return people;
   }
+
+  @GetMapping("/test")
+  @ResponseBody
+  public List<Person> test() {
+    addPerson("홍길동", 11);
+    addPerson("홍길순", 22);
+    addPerson("임꺾정", 33);
+    return people;
+  }
+
+  @GetMapping("/removePerson")
+  @ResponseBody
+  public String removePerson(int id) {
+    Person target = null;
+
+    for(Person person : people) {
+      if(person.getId() == id) {
+        target = person;
+      }
+    }
+    if(target == null){
+      return "응답 : %d번 사람이 존재하지 않습니다.".formatted(id);
+    } else {
+      people.remove(target);
+      return "응답 : %d번 사람이 삭제되었습니다.".formatted(id);
+    }
+  }
 }
 
 
